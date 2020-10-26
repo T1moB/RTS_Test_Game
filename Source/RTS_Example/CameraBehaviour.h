@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "GameFramework/PlayerController.h"
 #include "CameraBehaviour.generated.h"
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -32,11 +33,26 @@ private:
 
 	UInputComponent* inputComponent = nullptr;
 	USpringArmComponent* springarm = nullptr;
+	APlayerController* playerController = nullptr;
 	APawn* cameraPawn;
 
+	void InputTest();
+	void ZoomReset();
 	void ZoomIn(float AxisValue);
+	void CameraPan();
+
+	void MoveForward(float Value);
+
+	void DisableCameraMovement();
+	void EnableCameraMovement();
 
 
+	float StartZoom = 1500.0f;
 	float minZoomLimit = 300.0f;
 	float maxZoomLimit = 4000.0f;
+
+	float mouseX = .0f;
+	float mouseY = .0f;
+	float panSpeed = .01f;
+	bool disableCameraMovement = true;
 };
